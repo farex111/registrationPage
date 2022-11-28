@@ -1,0 +1,24 @@
+import { Injectable } from "@angular/core";
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
+import { Observable } from "rxjs";
+import { GeneralRequestService } from "./general-request.service";
+
+@Injectable({
+  providedIn: "root",
+})
+export class NonAuthGuard implements CanActivate {
+  constructor(private generalRequestService: GeneralRequestService, private router: Router){
+  }
+
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree{
+    if( !this.generalRequestService.getToken()) {
+      return true;
+    } else {
+      this.router.navigate(["dashboard"]);
+      return false;
+    }
+  }
+
+}

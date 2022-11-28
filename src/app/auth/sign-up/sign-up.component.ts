@@ -1,11 +1,13 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { MatSnackBar } from "@angular/material/snack-bar";
 
 import { LoadingService } from "../../shared/services/loading.service";
 import { AuthModel, AuthService } from "../auth.service";
 import { PasswordValidator } from "../../shared/validators/password.validator";
+import { GeneralRequestService } from "../../shared/services/general-request.service";
 
 @Component({
   selector: "app-sign-up",
@@ -22,7 +24,9 @@ export class SignUpComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder,
               private authService: AuthService,
               private loadingService: LoadingService,
-              private snackBar: MatSnackBar
+              private snackBar: MatSnackBar,
+              private generalRequestService: GeneralRequestService,
+              private router: Router,
   ){
   }
 
@@ -49,15 +53,16 @@ export class SignUpComponent implements OnInit, OnDestroy {
     this.signUpSub = this.authService.signUp(email, password).subscribe({
       next: (authResponse: AuthModel) => {
         this.loadingService.stop();
-        console.log(authResponse);
+        this.generalRequestService.setToken(authResponse.idToken);
+        this.router.navigate(["dashboard"]);
       },
       error: (errorMessage: string) => {
         this.loadingService.stop();
-        this.snackBar.open(errorMessage, 'Close', {
-          horizontalPosition:'end',
-          verticalPosition: 'top',
-          duration: 5000
-        })
+        this.snackBar.open(errorMessage, "Close", {
+          horizontalPosition: "end",
+          verticalPosition: "top",
+          duration: 5000,
+        });
       },
     });
   }

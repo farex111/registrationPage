@@ -1,10 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
 import { MatSnackBar } from "@angular/material/snack-bar";
 
 import { AuthModel, AuthService } from "../auth.service";
 import { LoadingService } from "../../shared/services/loading.service";
+import { GeneralRequestService } from "../../shared/services/general-request.service";
 
 @Component({
   selector: "app-sign-in",
@@ -20,6 +22,8 @@ export class SignInComponent implements OnInit {
               private authService: AuthService,
               private loadingService: LoadingService,
               private snackBar: MatSnackBar,
+              private generalRequestService: GeneralRequestService,
+              private router: Router,
   ){
   }
 
@@ -31,7 +35,7 @@ export class SignInComponent implements OnInit {
     this.signInForm = this.fb.group({
       email: ["", [Validators.required]],
       password: ["", [Validators.required]],
-      remember: [false]
+      remember: [false],
     });
   }
 
@@ -45,7 +49,8 @@ export class SignInComponent implements OnInit {
     this.signInSub = this.authService.signIn(email, password).subscribe({
       next: (res: AuthModel) => {
         this.loadingService.stop();
-        console.log(res);
+        this.generalRequestService.setToken(res.idToken);
+        this.router.navigate(["dashboard"]);
       },
       error: (errorMessage: string) => {
         this.loadingService.stop();
