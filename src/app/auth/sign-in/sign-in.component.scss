@@ -1,0 +1,53 @@
+.container {
+  img {
+    width: 50px;
+    vertical-align: top;
+    display: block;
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-top: 2rem;
+  }
+
+  .mode {
+    display: flex;
+    font-weight: 500;
+    align-items: center;
+    margin-top: 0.125rem;
+
+    a {
+      margin-left: .25rem;
+      color: #6366f1;
+
+      &:hover {
+        text-decoration-line: underline;
+      }
+    }
+  }
+
+  form {
+    margin-top: 2rem;
+
+    mat-form-field {
+      width: 100%;
+    }
+
+    .support {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .submit {
+      padding-top: 2rem;
+      width: 100%;
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

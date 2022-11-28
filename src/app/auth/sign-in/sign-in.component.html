@@ -1,1 +1,39 @@
-<p>sign-in works!</p>
+<div class="container">
+  <img src="../../../assets/images/logo.svg" alt="logo">
+  <h1>Sign In</h1>
+  <div class="mode">
+    <p>Don't have an account?</p>
+    <a routerLink="/sign-up">Sign Up </a>
+  </div>
+  <form autocomplete="off" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput name="email" autocomplete="new-email" formControlName="email">
+      <mat-icon matSuffix color="primary">mail</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput
+             [type]="hidePassword ? 'password' : 'text'"
+             formControlName="password"
+             name="password"
+             autocomplete="password">
+      <button type="button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hidePassword">
+        <mat-icon color="primary">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <div class="support">
+      <mat-checkbox color="primary" formControlName="remember">Remember me</mat-checkbox>
+      <a routerLink="/forgot-password">Forgot Password?</a>
+    </div>
+
+    <div class="submit">
+      <button mat-raised-button [disabled]="signInForm.invalid" color="primary">Sign In</button>
+    </div>
+  </form>
+</div>

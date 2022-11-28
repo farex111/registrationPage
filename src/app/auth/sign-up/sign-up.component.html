@@ -1,1 +1,64 @@
-<p>sign-up works!</p>
+<div class="container">
+  <img src="../../../assets/images/logo.svg" alt="logo">
+  <h1>Sign Up</h1>
+  <div class="mode">
+    <p>Already have an account?</p>
+    <a routerLink="/sign-in">Sign in </a>
+  </div>
+  <form autocomplete="off" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput name="email" autocomplete="new-email" formControlName="email">
+      <mat-icon matSuffix color="primary">mail</mat-icon>
+    </mat-form-field>
+
+    <div class="password">
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput
+               [type]="hidePassword ? 'password' : 'text'"
+               formControlName="password"
+               name="password"
+               autocomplete="new-password"
+               (focusin)="passwordStrength = true"
+               (focusout)="passwordStrength = false">
+        <button type="button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
+                [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hidePassword">
+          <mat-icon color="primary">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <div class="password-strength" *ngIf="passwordStrength">
+        <app-password-strength [password]="signUpForm.controls['password'].value"
+                               [minLength]="8"
+                               [hasUpperCase]="true"
+                               [hasLowerCase]="true"
+                               [hasNumber]="true"
+                               [hasSpecialChar]="true"
+                               (onStrengthChanged)="onStrengthChanged($event)">
+        </app-password-strength>
+      </div>
+    </div>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Repeat Password</mat-label>
+      <input matInput [type]="hideRepeatPassword ? 'password' : 'text'" formControlName="repeatPassword">
+      <button type="button" mat-icon-button matSuffix (click)="hideRepeatPassword = !hideRepeatPassword"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hideRepeatPassword">
+        <mat-icon color="primary">{{hideRepeatPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="signUpForm.hasError('passwordMatching')">
+        პაროლი არ ემთხვევა
+      </mat-error>
+    </mat-form-field>
+
+    <mat-checkbox color="primary" formControlName="agree">I agree with Terms and Privacy Policy</mat-checkbox>
+
+    <div class="submit">
+      <button mat-raised-button [disabled]="signUpForm.invalid" color="primary">Create your free account</button>
+    </div>
+  </form>
+</div>
