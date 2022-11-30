@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
@@ -13,7 +13,7 @@ import { GeneralRequestService } from "../../shared/services/general-request.ser
   templateUrl: "./sign-in.component.html",
   styleUrls: ["./sign-in.component.scss"],
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent implements OnInit, OnDestroy {
   hidePassword: boolean = true;
   signInForm!: FormGroup;
   signInSub!: Subscription;
@@ -31,7 +31,7 @@ export class SignInComponent implements OnInit {
     this.initializeSignInForm();
   }
 
-  initializeSignInForm(){
+  initializeSignInForm(): void{
     this.signInForm = this.fb.group({
       email: ["", [Validators.required]],
       password: ["", [Validators.required]],
@@ -39,7 +39,7 @@ export class SignInComponent implements OnInit {
     });
   }
 
-  onSubmit(){
+  onSubmit(): void{
     if(this.signInForm.invalid) {
       return;
     }
@@ -61,5 +61,11 @@ export class SignInComponent implements OnInit {
         });
       },
     });
+  }
+
+  ngOnDestroy(): void{
+    if(this.signInSub) {
+      this.signInSub.unsubscribe();
+    }
   }
 }

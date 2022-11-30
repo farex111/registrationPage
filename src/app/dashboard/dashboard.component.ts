@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
-import { GeneralRequestService } from "../shared/services/general-request.service";
 import { Router } from "@angular/router";
+import { GeneralRequestService } from "../shared/services/general-request.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +10,8 @@ import { Router } from "@angular/router";
 export class DashboardComponent{
   constructor(private generalRequestService: GeneralRequestService, private router: Router){
   }
-  logout(){
+
+  logOut(){
     this.generalRequestService.clearToken();
     this.router.navigate([""])
   }

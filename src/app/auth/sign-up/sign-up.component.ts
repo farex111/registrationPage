@@ -43,7 +43,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
     }, { validators: PasswordValidator.passwordMatching });
   }
 
-  onSubmit(){
+  onSubmit(): void{
     if(this.signUpForm.invalid) {
       return;
     }

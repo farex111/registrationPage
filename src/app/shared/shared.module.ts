@@ -10,17 +10,22 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatListModule } from "@angular/material/list";
-
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatNativeDateModule } from "@angular/material/core";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+
 import { LoadingComponent } from "./components/loading/loading.component";
 import { PasswordStrengthComponent } from "./components/password-strength/password-strength.component";
 import { AuthInterceptor } from "./services/auth.interceptor";
+import { DialogComponent } from './components/dialog/dialog.component';
+import { MatDialogModule } from "@angular/material/dialog";
 
 
 @NgModule({
   declarations: [
     LoadingComponent,
     PasswordStrengthComponent,
+    DialogComponent,
   ],
   imports: [
     CommonModule,
@@ -33,6 +38,9 @@ import { AuthInterceptor } from "./services/auth.interceptor";
     MatProgressBarModule,
     MatListModule,
     MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatDialogModule,
   ],
   exports: [
     MatFormFieldModule,
@@ -43,6 +51,8 @@ import { AuthInterceptor } from "./services/auth.interceptor";
     LoadingComponent,
     PasswordStrengthComponent,
     MatSnackBarModule,
+    MatDatepickerModule,
+    MatDialogModule,
   ],
   providers: [
     {
