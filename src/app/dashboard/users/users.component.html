@@ -22,21 +22,21 @@
       <mat-form-field appearance="fill">
         <mat-label>Category</mat-label>
         <mat-select formControlName="category">
-          <mat-option [value]="'test1'">
-            test 1
+          <mat-option [value]="category.id" *ngFor="let category of categoryList">
+            {{category.category}}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Status</mat-label>
         <mat-select formControlName="status">
-          <mat-option [value]="'test1'">
-            test 1
+          <mat-option [value]="status.id" *ngFor="let status of statusList">
+            {{status.status}}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <div class="buttons">
-        <button mat-raised-button color="primary">Search</button>
+        <button mat-raised-button color="primary" (click)="onFilter()">Search</button>
         <button mat-raised-button color="primary" (click)="onReset()">Clear</button>
       </div>
     </form>
@@ -44,12 +44,12 @@
 
   <div class="wrapper">
     <button mat-raised-button color="primary" (click)="onAddUser()">New User</button>
-    <button mat-raised-button color="primary">New Status</button>
-    <button mat-raised-button color="primary">New Category</button>
+    <button mat-raised-button color="primary" (click)="addStatus()">New Status</button>
+    <button mat-raised-button color="primary" (click)="addCategory()">New Category</button>
   </div>
 
-  <div class="wrapper table">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <div class=" table">
+    <table mat-table [dataSource]="dataSource">
 
       <ng-container matColumnDef="email">
         <th mat-header-cell *matHeaderCellDef> Email</th>

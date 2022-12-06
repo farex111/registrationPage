@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="header" [align]="'center'">
+    <h1 mat-dialog-title>{{data.title}}</h1>
+  </div>
+
+  <div class="content" mat-dialog-content [align]="'center'">
+    <mat-form-field appearance="fill">
+      <mat-label>Category</mat-label>
+      <input matInput placeholder="Placeholder" [(ngModel)]="category">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions class="buttons" [align]=" 'center' ">
+    <button mat-button color="primary" [mat-dialog-close]="category">{{data.confirmText}}</button>
+    <button mat-button color="warn" [mat-dialog-close]="false">{{data.cancelText}}</button>
+  </div>
+</div>
+

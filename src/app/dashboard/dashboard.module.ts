@@ -4,11 +4,14 @@ import { DashboardComponent } from "./dashboard.component";
 import { DashboardRoutingModule } from "./dashboard-routing.module";
 import { UsersComponent } from './users/users.component';
 import { SharedModule } from "../shared/shared.module";
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatSelectModule } from "@angular/material/select";
 import { MatTableModule } from "@angular/material/table";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { AddUserComponent } from './users/add-user/add-user.component';
+import { AddStatusComponent } from './users/add-status/add-status.component';
+import { AddCategoryComponent } from './users/add-category/add-category.component';
+import { MatPaginatorModule } from "@angular/material/paginator";
 
 
 
@@ -16,16 +19,20 @@ import { AddUserComponent } from './users/add-user/add-user.component';
   declarations: [
     DashboardComponent,
     UsersComponent,
-    AddUserComponent
+    AddUserComponent,
+    AddStatusComponent,
+    AddCategoryComponent
   ],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    SharedModule,
-    ReactiveFormsModule,
-    MatSelectModule,
-    MatTableModule,
-    MatTooltipModule,
-  ],
+    imports: [
+        CommonModule,
+        DashboardRoutingModule,
+        SharedModule,
+        ReactiveFormsModule,
+        MatSelectModule,
+        MatTableModule,
+        MatTooltipModule,
+        FormsModule,
+        MatPaginatorModule,
+    ],
 })
 export class DashboardModule { }

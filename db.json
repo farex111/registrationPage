@@ -1,0 +1,59 @@
+{
+  "users": [
+    {
+      "email": "asd@gmail.com",
+      "name": "asdasd",
+      "personalId": "asdasd",
+      "date": "2022-12-20T20:00:00.000Z",
+      "category": 2,
+      "status": 2,
+      "id": 3
+    },
+    {
+      "email": "giorgiparadashvili13@gmail.com",
+      "name": "Giorgi Paradashvili",
+      "personalId": "02338188293",
+      "date": "2022-12-11T20:00:00.000Z",
+      "category": 3,
+      "status": 1,
+      "id": 4
+    },
+    {
+      "email": "asdasd",
+      "name": "Giorgi Paradashvili",
+      "personalId": "asdasd",
+      "date": "2022-12-27T20:00:00.000Z",
+      "category": 2,
+      "status": 2,
+      "id": 5
+    }
+  ],
+  "statuses": [
+    {
+      "status": "asdasd",
+      "id": 1
+    },
+    {
+      "status": "asdasdad",
+      "id": 2
+    },
+    {
+      "status": "asdads",
+      "id": 3
+    },
+    {
+      "status": "სდცსდცცდსცსდცსსდ",
+      "id": 4
+    }
+  ],
+  "category": [
+    {
+      "category": "asdads",
+      "id": 1
+    },
+    {
+      "category": "xvxvc",
+      "id": 2
+    }
+  ]
+}
